@@ -1,6 +1,6 @@
 %{ 
 //Samuel Yaeger, 113454853
-//
+//Eric Chen, 113521106
 
 #include "tokens.h"
 # undef yywrap
