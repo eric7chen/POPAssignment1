@@ -1,5 +1,6 @@
 %{ 
-//name, ID; 
+//Samuel Yaeger, 113454853
+//
 
 #include "tokens.h"
 # undef yywrap
