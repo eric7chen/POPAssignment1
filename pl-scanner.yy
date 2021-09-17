@@ -26,6 +26,7 @@ YY_DECL;
 
 DIGIT [0-9] 
 ALPHA [a-zA-Z]
+LOWERCASE [a-z]
 
 %%
 
@@ -56,19 +57,20 @@ ALPHA [a-zA-Z]
 										return L_INTEGER;
 									}
 
-{ALPHA}+        { 
-									return T_ID;
-							  }
+"@"+{LOWERCASE}+({LOWERCASE}|{DIGIT}|"_")* {
+	return T_ID;
+}
 
 <<EOF>>						{ return T_EOF ; }
 .									{ printf ("Unexpected character\n"); exit (1); }
+
 
 "+" {
 	return OP_ADD;
 }
 
 "−" {
-	return OP_SUB
+	return OP_SUB;
 }
 
 "*" {
@@ -107,12 +109,60 @@ ALPHA [a-zA-Z]
 	return OP_LT;
 } 
 
-">"
- {
-	 return OP_GT;
- }
+">" {
+	return OP_GT;
+}
 
+"INTEGER" {
+	return K_INTEGER;
+}
 
+"FLOAT" {
+	return K_FLOAT;
+}
 
+"FOREACH" {
+	return K_FOREACH;
+}
+
+"BEGIN" {
+	return K_BEGIN;
+}
+
+"END" {
+	return K_END;
+}
+
+("+"|"-"|\.) {
+	return L_FLOAT;
+}
+
+"REPEAT" {
+	return K_REPEAT;
+}
+
+"UNTIL" {
+	return K_UNTIL;
+}
+
+"WHILE" {
+	return K_WHILE;
+}
+
+"DECLARE" {
+	return K_DECLARE;
+}
+
+"IF" {
+	return K_IF;
+}
+
+"THEN" {
+	return K_THEN;
+}
+
+"PRINT" {
+	return K_PRINT;
+}
 
 %%
