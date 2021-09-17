@@ -63,6 +63,54 @@ ALPHA [a-zA-Z]
 <<EOF>>						{ return T_EOF ; }
 .									{ printf ("Unexpected character\n"); exit (1); }
 
+"+" {
+	return OP_ADD;
+}
+
+"−" {
+	return OP_SUB
+}
+
+"*" {
+	return OP_MUL;
+}
+
+"/" {
+	return OP_DIV;
+}
+
+"+=" {
+	return OP_ADDINC;
+} 
+
+"++"  {
+	return OP_PLUSPLUS;
+}
+
+"<=" {
+	return OP_LEQ;
+}
+
+">=" {
+	return OP_GEQ;
+}
+
+"==" {
+	return OP_EQ;
+} 
+
+"~=" {
+	return OP_DIFF;
+} 
+
+"<" {
+	return OP_LT;
+} 
+
+">"
+ {
+	 return OP_GT;
+ }
 
 
 
