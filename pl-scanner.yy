@@ -6,18 +6,13 @@
 # undef yywrap
 # define yywrap() 1
 
-
-
 #undef YY_DECL
 #define YY_DECL int yylex()
 YY_DECL;
 
-
 // Code run each time a pattern is matched.
 #undef  YY_USER_ACTION  
 # define YY_USER_ACTION  {}
-
-
 
 %}
 
@@ -30,32 +25,25 @@ LOWERCASE [a-z]
 
 %%
 
-
-
-
-
 \/\/.*$   
 [ \t]+						
 [\n]+							
 
+";" { 
+	return ';'; 
+}
 
+"=" { 
+	return OP_ASSIGN; 
+}
 
-";"							  { 
-										return ';'; 
-                  }
+"MAIN" { 
+return K_MAIN; 
+}
 
-"="							  { 
-										return OP_ASSIGN; 
-                  }
-
-"MAIN"					{ 
-										return K_MAIN; 
-                  }
-
-
-{DIGIT}+					{ 
-										return L_INTEGER;
-									}
+{DIGIT}+ { 
+return L_INTEGER;
+}
 
 "@"+{LOWERCASE}+({LOWERCASE}|{DIGIT}|"_")* {
 	return T_ID;
@@ -129,7 +117,6 @@ LOWERCASE [a-z]
 	return K_END;
 }
 
-
 "REPEAT" {
 	return K_REPEAT;
 }
@@ -162,7 +149,12 @@ LOWERCASE [a-z]
 	return L_FLOAT;
 }
 
-<<EOF>>						{ return T_EOF ; }
-.									{ printf ("Unexpected character\n"); exit (1); }
+<<EOF>>	{ 
+	return T_EOF ; 
+}
+
+. { 
+	printf ("Unexpected character\n"); exit (1); 
+}
 
 %%
