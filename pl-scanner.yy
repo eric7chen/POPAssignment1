@@ -61,8 +61,6 @@ LOWERCASE [a-z]
 	return T_ID;
 }
 
-<<EOF>>						{ return T_EOF ; }
-.									{ printf ("Unexpected character\n"); exit (1); }
 
 
 "+" {
@@ -133,9 +131,6 @@ LOWERCASE [a-z]
 	return K_END;
 }
 
-("+"|"-"|\.) {
-	return L_FLOAT;
-}
 
 "REPEAT" {
 	return K_REPEAT;
@@ -164,5 +159,8 @@ LOWERCASE [a-z]
 "PRINT" {
 	return K_PRINT;
 }
+
+<<EOF>>						{ return T_EOF ; }
+.									{ printf ("Unexpected character\n"); exit (1); }
 
 %%
