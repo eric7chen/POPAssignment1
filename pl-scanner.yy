@@ -61,13 +61,11 @@ LOWERCASE [a-z]
 	return T_ID;
 }
 
-
-
 "+" {
 	return OP_ADD;
 }
 
-"−" {
+"-" {
 	return OP_SUB;
 }
 
@@ -158,6 +156,10 @@ LOWERCASE [a-z]
 
 "PRINT" {
 	return K_PRINT;
+}
+
+("+"|"-"|"")+{DIGIT}+{DIGIT}*+"."+{DIGIT}* {
+	return L_FLOAT;
 }
 
 <<EOF>>						{ return T_EOF ; }
