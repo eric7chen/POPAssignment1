@@ -145,7 +145,7 @@ return L_INTEGER;
 	return K_PRINT;
 }
 
-("+"|"-"|"")+{DIGIT}+{DIGIT}*+"."+{DIGIT}* {
+("+"|"-"|"")+{DIGIT}+{DIGIT}*"."{DIGIT}+ {
 	return L_FLOAT;
 }
 
