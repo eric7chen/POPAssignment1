@@ -45,7 +45,7 @@ return K_MAIN;
 return L_INTEGER;
 }
 
-"@"+{LOWERCASE}+({LOWERCASE}|{DIGIT}|"_")* {
+"@"{LOWERCASE}+({LOWERCASE}|{DIGIT}|"_")* {
 	return T_ID;
 }
 
@@ -145,7 +145,7 @@ return L_INTEGER;
 	return K_PRINT;
 }
 
-("+"|"-"|"")+{DIGIT}+{DIGIT}*"."{DIGIT}+ {
+("+"|"-"|""){DIGIT}+{DIGIT}*"."{DIGIT}+ {
 	return L_FLOAT;
 }
 
